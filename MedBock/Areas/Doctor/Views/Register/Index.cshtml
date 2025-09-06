@@ -1,0 +1,200 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Registration</title>
+    <link rel="stylesheet" href="./css/layout/background.css">
+    <link rel="stylesheet" href="./css/layout/components.css">
+    <link rel="stylesheet" href="./css/layout/utilites.css">
+    <link rel="stylesheet" href="./css/DoctorRegister.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="doctor-register-bg">
+        <!-- Background decoration -->
+        <div class="bg-decoration">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+        </div>
+
+        <div class="register-card">
+            <div class="register-header">
+                <div class="logo-container">
+                    <div class="logo-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                </div>
+                <h1>Doctor Registration</h1>
+                <p>Please fill in the doctor information below</p>
+            </div>
+
+            <form id="doctorForm" class="patient-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">
+                            <i class="fas fa-user"></i>
+                            First Name
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+                            <i class="fas fa-user input-icon"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">
+                            <i class="fas fa-user"></i>
+                            Last Name
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+                            <i class="fas fa-user input-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">
+                            <i class="fas fa-envelope"></i>
+                            Email
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                            <i class="fas fa-envelope input-icon"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">
+                            <i class="fas fa-phone"></i>
+                            Phone
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                            <i class="fas fa-phone input-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="password">
+                            <i class="fas fa-lock"></i>
+                            Password
+                        </label>
+                        <div class="input-wrapper password-wrapper">
+                            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                            <i class="fas fa-lock input-icon"></i>
+                            <button type="button" class="toggle-password" onclick="togglePassword()">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="specialty">
+                            <i class="fas fa-stethoscope"></i>
+                            Specialty
+                        </label>
+                        <div class="input-wrapper">
+                            <select id="specialty" name="specialty" required>
+                                <option value="">Select Specialty</option>
+                                <option value="cardiology">Cardiology</option>
+                                <option value="dermatology">Dermatology</option>
+                                <option value="endocrinology">Endocrinology</option>
+                                <option value="gastroenterology">Gastroenterology</option>
+                                <option value="general-practice">General Practice</option>
+                                <option value="neurology">Neurology</option>
+                                <option value="oncology">Oncology</option>
+                                <option value="orthopedics">Orthopedics</option>
+                                <option value="pediatrics">Pediatrics</option>
+                                <option value="psychiatry">Psychiatry</option>
+                                <option value="radiology">Radiology</option>
+                                <option value="surgery">Surgery</option>
+                                <option value="urology">Urology</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <i class="fas fa-stethoscope input-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="licenseNumber">
+                            <i class="fas fa-id-card"></i>
+                            License Number
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="licenseNumber" name="licenseNumber" placeholder="Enter your medical license number" required>
+                            <i class="fas fa-id-card input-icon"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="workHours">
+                            <i class="fas fa-clock"></i>
+                            Work Hours
+                        </label>
+                        <div class="input-wrapper">
+                            <select id="workHours" name="workHours" required>
+                                <option value="">Select Work Hours</option>
+                                <option value="full-time">Full Time</option>
+                                <option value="part-time">Part Time</option>
+                                <option value="weekends-only">Weekends Only</option>
+                                <option value="evenings-only">Evenings Only</option>
+                                <option value="flexible">Flexible</option>
+                            </select>
+                            <i class="fas fa-clock input-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="licenseFile">
+                        <i class="fas fa-file-upload"></i>
+                        License File
+                    </label>
+                    <div class="input-wrapper file-input-wrapper">
+                        <input type="file" id="licenseFile" name="licenseFile" accept=".pdf,.jpg,.jpeg,.png" required>
+                        <label for="licenseFile" class="file-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span class="file-text">Choose file or drag here</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="bio">
+                        <i class="fas fa-user-edit"></i>
+                        Bio
+                    </label>
+                    <div class="input-wrapper">
+                        <textarea id="bio" name="bio" placeholder="Tell us about your experience and expertise" rows="4"></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span class="btn-text">Register Doctor</span>
+                    <i class="fas fa-user-md btn-icon"></i>
+                </button>
+            </form>
+
+            <div class="register-footer">
+                <p>Already have an account? <a href="login.html">Sign In</a></p>
+                <p>Want to register as a patient? <a href="register.html">Patient Registration</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/DoctorRegister.js"></script>
+</body>
+</html>

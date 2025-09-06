@@ -1,0 +1,191 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - MedBook</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="header admin-header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="@Url.Action("Index", "Home")" class="nav-logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>MedBook Admin</span>
+                </a>
+                <ul class="nav-menu"></ul>
+                <div class="nav-auth admin-profile">
+                    <div class="user-menu">
+                        <button class="user-btn" onclick="toggleUserMenu()">
+                            <i class="fas fa-user-shield"></i>
+                            Admin
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <a href="#settings"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Admin Content -->
+    <main id="dashboard" class="admin-main">
+        <div class="container">
+            <div class="admin-hero" data-aos="fade-up">
+                <h1 class="page-title"><i class="fas fa-gauge-high"></i> Admin Dashboard</h1>
+                <p class="page-subtitle">Manage doctors, disciplines, and platform data</p>
+            </div>
+
+            <!-- Tabs Navigation -->
+            <div class="admin-tabs" data-aos="fade-up">
+                <button class="tab-btn active" data-tab="tab-doctors"><i class="fas fa-user-md"></i> Doctors</button>
+                <button class="tab-btn" data-tab="tab-disciplines"><i class="fas fa-notes-medical"></i> Disciplines</button>
+            </div>
+
+            <!-- Tabs Content -->
+            <div class="tab-content">
+                <!-- Doctors Management -->
+                <section id="doctors" class="tab-panel active" data-tab-panel="tab-doctors" data-aos="fade-up">
+                    <div class="management-toolbar">
+                        <div class="search">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search doctors by name, specialty...">
+                        </div>
+                        <div class="actions">
+                            <button class="btn btn-primary"><i class="fas fa-plus"></i> Add Doctor</button>
+                            <button class="btn btn-outline"><i class="fas fa-file-import"></i> Import CSV</button>
+                        </div>
+                    </div>
+
+                    <div class="data-surface" data-aos="fade-up">
+                        <div class="data-header">
+                            <h3><i class="fas fa-list"></i> Doctor Directory</h3>
+                            <div class="data-meta"><span class="badge">Placeholder</span></div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Specialty</th>
+                                        <th>Experience</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>—</td>
+                                        <td>—</td>
+                                        <td>—</td>
+                                        <td><span class="status status-inactive">Inactive</span></td>
+                                        <td>
+                                            <button class="icon-btn" title="Edit"><i class="fas fa-pen"></i></button>
+                                            <button class="icon-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Disciplines Management -->
+                <section id="disciplines" class="tab-panel" data-tab-panel="tab-disciplines" data-aos="fade-up">
+                    <div class="management-toolbar">
+                        <div class="search">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search disciplines...">
+                        </div>
+                        <div class="actions">
+                            <button class="btn btn-primary"><i class="fas fa-plus"></i> Add Discipline</button>
+                        </div>
+                    </div>
+
+                    <div class="data-surface" data-aos="fade-up">
+                        <div class="data-header">
+                            <h3><i class="fas fa-layer-group"></i> Disciplines List</h3>
+                            <div class="data-meta"><span class="badge">Placeholder</span></div>
+                        </div>
+                        <div class="card-grid">
+                            <div class="card">
+                                <div class="card-icon"><i class="fas fa-stethoscope"></i></div>
+                                <div class="card-content">
+                                    <h4>Internal Medicine</h4>
+                                    <p>Manage general health and wellness discipline</p>
+                                </div>
+                                <div class="card-actions">
+                                    <button class="icon-btn" title="Edit"><i class="fas fa-pen"></i></button>
+                                    <button class="icon-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-icon"><i class="fas fa-heart"></i></div>
+                                <div class="card-content">
+                                    <h4>Cardiology</h4>
+                                    <p>Manage heart and cardiovascular health discipline</p>
+                                </div>
+                                <div class="card-actions">
+                                    <button class="icon-btn" title="Edit"><i class="fas fa-pen"></i></button>
+                                    <button class="icon-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (optional minimal for admin) -->
+    <footer class="footer admin-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 MedBook Admin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="/js/main.js"></script>
+    <script>
+        // Simple tab switching
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabPanels = document.querySelectorAll('.tab-panel');
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabButtons.forEach(b => b.classList.remove('active'));
+                    tabPanels.forEach(p => p.classList.remove('active'));
+                    btn.classList.add('active');
+                    document.querySelector(`[data-tab-panel="${btn.dataset.tab}"]`).classList.add('active');
+                });
+            });
+            if (window.AOS && typeof AOS.init === 'function') {
+                AOS.init({ duration: 800, easing: 'ease-in-out', once: true, offset: 100 });
+            }
+        });
+    </script>
+</body>
+</html>
