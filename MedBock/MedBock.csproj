@@ -12,6 +12,7 @@
     <Folder Include="Areas\Patient\Views\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Controllers\" />
+    <Folder Include="Models\Account\" />
   </ItemGroup>
 
   <ItemGroup>

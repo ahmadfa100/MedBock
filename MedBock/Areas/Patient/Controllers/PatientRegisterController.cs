@@ -19,7 +19,7 @@ namespace MedBock.Areas.Patient.Controllers
 
         public IActionResult Index()
         {
-            return RedirectToAction("Index", "PatientRegister", new { area = "Patient" });
+            return View("~/Views/Account/Register.cshtml", new PatientRegisterViewModel());
         }
 
         [HttpPost]
@@ -63,7 +63,7 @@ namespace MedBock.Areas.Patient.Controllers
             _context.Patients.Add(patientEntity);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Index", "PatientRegister", new { area = "Patient" });
+            return RedirectToAction("Login", "Account", new { area = "" });
         }
     }
 }
