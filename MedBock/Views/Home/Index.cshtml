@@ -29,10 +29,25 @@
 
 
                 <div class="nav-auth">
-                    <button class="auth-btn patient-login" onclick="openModal('patientLoginModal')">
-                        <i class="fas fa-user"></i>
-                        Patient Login
-                    </button>
+                    @if (User.Identity.IsAuthenticated)
+                    {   
+                        <form asp-controller="Account" asp-action="Login" id="logoutForm">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="auth-btn patient-login">
+                                <i class="fas fa-sign-out-alt">
+                                    Logout
+                                </i>
+                            </button>
+                        </form>
+                    }
+                    else
+                    {
+                        <button class="auth-btn patient-login" onclick="openModel('PatientLoginFormModel')">
+                            <i class="fas fa-user"></i>
+                            Patient Login
+                            </button>
+                    }
+                    
                 </div>
 
                 <div class="hamburger">
@@ -431,7 +446,9 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-
+    <script>
+        window.isAuthenticated = @User.Identity.IsAuthenticated.ToString().ToLower();
+    </script>
     <script src="./js/main.js"></script>
 </body>
 </html>

@@ -104,8 +104,12 @@ function bookDoctor(doctorId) {
 
 // Check if user is logged in (mock function)
 function checkUserLogin() {
-    // In a real application, this would check localStorage, cookies, or session
-    return false; // Return false to simulate not logged in
+    if (typeof window.isAuthenticated !== 'undefined') {
+        // window.isAuthenticated was emitted as a boolean literal by Razor
+        return window.isAuthenticated === true || window.isAuthenticated === 'true';
+    }
+    // fallback if not present
+    return false;
 }
 
 // Admin Dashboard Functions

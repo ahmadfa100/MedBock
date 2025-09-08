@@ -1,4 +1,5 @@
-﻿using MedBock.DBEntities;
+﻿using MedBock.Areas.Patient.Models;
+using MedBock.DBEntities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
@@ -19,14 +20,14 @@ namespace MedBock.Controllers
         // GET: /Account/Register
         public IActionResult Register()
         {
-            return View(); // Views/Account/Register.cshtml
+            return View(new PatientRegisterViewModel()); 
         }
 
         // GET: /Account/Login
         [HttpGet]
         public IActionResult Login()
         {
-            return View(); // Views/Account/Login.cshtml
+            return View(); 
         }
 
         // POST: /Account/Login
@@ -63,20 +64,20 @@ namespace MedBock.Controllers
                 new Claim(ClaimTypes.Role, user.Role ?? "Patient")
             };
 
-            var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            var authProperties = new AuthenticationProperties
-            {
-                IsPersistent = RememberMe,
-                ExpiresUtc = DateTimeOffset.UtcNow.AddHours(2)
-            };
+                var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = RememberMe,
+                    ExpiresUtc = DateTimeOffset.UtcNow.AddHours(2)
+                };
 
-            await HttpContext.SignInAsync(
-                CookieAuthenticationDefaults.AuthenticationScheme,
-                new ClaimsPrincipal(claimIdentity),
-                authProperties);
+                await HttpContext.SignInAsync(
+                    CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimIdentity),
+                    authProperties);
 
-            return RedirectToAction("Index", "Home");
-        }
+                return RedirectToAction("Index", "Home");
+            }
 
         // Logout action
         [HttpPost]
